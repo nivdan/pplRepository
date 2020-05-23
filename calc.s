@@ -37,14 +37,6 @@ main:
         call readSysCall
         ;mov byte[bufferIn+eax-1], 0
 
-        cmp eax, 2
-        je notInsertCommand
-        ;//TODO
-        call pushToStack
-        jmp mainLoop
-
-        notInsertCommand:
-
         cmp byte[bufferIn], 'q'
         jne notQuitCommand
         ;//TODO
@@ -100,6 +92,9 @@ main:
             jmp mainLoop
         
         notNumHexaCommand:
+            
+            call pushToStack
+            jmp mainLoop
 
             jmp mainLoop
 
